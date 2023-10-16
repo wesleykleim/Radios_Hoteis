@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmls:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+    <nav class="#b71c1c red darken-4">
+        <div class="nav-wrapper" >
+          <a href="#" class="brand-logo " >Anserve Controle Rádios</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li class="active"><a href="/radios">Radios</a></li>
+            <li><a href="#">Pendentes</a></li>
+            <li><a href="c#">Entrar</a></li>
+          </ul>
+        </div>
+    </nav>
+            
+
+      <main class="container">
+        <h1> Hoteis </h1>
+        <h5>Digite o nome do Hotel:</h5>
+        <div class="row">
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <textarea id="textarea1" class="materialize-textarea"></textarea>
+                  <label for="textarea1"></label>
+                </div>
+              </div>
+            </form>
+          </div>
+                
+                
+        <ul>
+            <li th:each="hoteis : ${hoteis}" th:text="${hoteis}"> tarefa </li>
+        </ul>
+
+      </main>
+
+    
+</body>
+</html>
