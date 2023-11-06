@@ -1,3 +1,4 @@
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import br.com.fiap.controle_radios_hoteis.user.User;
 import jakarta.validation.Valid;
 @Controller
 @RequestMapping("/hoteis")
@@ -43,4 +45,29 @@ public class HoteisController {
     redirect.addFlashAttribute("success", "Hotel cadastrada com sucesso");
     return "redirect:/hotel";
   }
+
+  @GetMapping("dec/{id}")
+    public String decrement(@PathVariable Long id){
+        service.decrement(id);
+        return "redirect:/hotel";
+    }
+
+    @GetMapping("inc/{id}")
+    public String increment(@PathVariable Long id){
+        service.increment(id);
+        return "redirect:/hotel";
+    }
+
+    @GetMapping("catch/{id}")
+    public String catchTask(@PathVariable Long id, @AuthenticationPrincipal OAuth2User user){
+        service.catchTask(id, User.convert(user));
+        return "redirect:/hotel";
+    }
+
+    @GetMapping("drop/{id}")
+    public String dropTask(@PathVariable Long id, @AuthenticationPrincipal OAuth2User user){
+        service.dropTask(id, User.convert(user));
+        return "redirect:/hotel";
+    }
+
 }

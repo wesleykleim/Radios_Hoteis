@@ -1,19 +1,22 @@
 package br.com.fiap.hoteisforce.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/users")
 public class UserController {
 
-  @GetMapping("/login")
-  public String loginPage() {
-    return "auth/login";
-  }
+    @Autowired
+    UserRepository repository;
 
-  @GetMapping("/logout")
-  public String logoutPage() {
-    return "auth/logout";
-  }
+    @GetMapping
+    public String index(Model model){
+        model.addAttribute("users", repository.findAll());
+        return "user/index";
+    }
 
 }

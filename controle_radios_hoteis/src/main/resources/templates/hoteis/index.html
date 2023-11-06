@@ -50,6 +50,8 @@
             </div>
             <p th:text="${hoteis.description}"></p>
           </div>
+          <img th:if="${task.user != null}" th:src="${task.user.avatarUrl}" class="avatar" alt="">
+          <div class="determinate" th:style="${'width: ' + task.status + '%'}"></div>
           <div class="card-action">
             <a class="waves-effect waves-light btn">EDITAR</a>
             <a th:href="${'/hoteis/delete/' + hoteis.id}" class="waves-effect waves-light btn red">EXCLUIR</a>
@@ -62,6 +64,19 @@
       <a href="/hoteis/new" class="btn-floating btn-large blue darken-1">
         <i class="large material-icons">add</i>
       </a>
+      <a th:if="${task.status != 0}" th:href="${'/task/dec/' + task.id}" class="btn">
+        <i class="material-icons">remove</i>
+     </a>
+     <a th:if="${task.status != 100}" th:href="${'/task/inc/' + task.id}" class="btn">
+        <i class="material-icons">add</i>
+     </a>
+     <a th:if="${task.user == null}" th:href="${'/task/catch/' + task.id}" class="btn purple">
+        <i class="material-icons">pan_tool</i>
+     </a>
+     <a th:if="${task.user != null}" th:href="${'/task/drop/' + task.id}" class="btn amber black-text">
+        <i class="material-icons">do_not_touch</i>
+     </a>
+      
     </div>
   </main>
 
